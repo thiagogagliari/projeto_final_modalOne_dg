@@ -1,4 +1,3 @@
-// Elementos do DOM
 const loginScreen = document.getElementById("login-screen");
 const usersScreen = document.getElementById("users-screen");
 const loginForm = document.getElementById("login-form");
@@ -8,17 +7,14 @@ const nameFilter = document.getElementById("name-filter");
 const countryFilter = document.getElementById("country-filter");
 const logoutBtn = document.getElementById("logout-btn");
 
-// Credenciais de login (em um caso real, isso seria validado no backend)
 const VALID_CREDENTIALS = {
-  username: "admin",
-  password: "admin123",
+  username: "thiagogagliari",
+  password: "thi123",
 };
 
-// Estado da aplicação
 let users = [];
 let selectedUsers = new Set();
 
-// Verificar se o usuário já está logado
 function checkLoginStatus() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   if (isLoggedIn) {
@@ -28,7 +24,6 @@ function checkLoginStatus() {
   }
 }
 
-// Função para carregar dados salvos
 function loadSavedData() {
   const savedUsers = localStorage.getItem("users");
   if (savedUsers) {
@@ -47,7 +42,6 @@ function loadSavedData() {
   }
 }
 
-// Função para fazer login
 function handleLogin(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;
@@ -67,7 +61,6 @@ function handleLogin(event) {
   }
 }
 
-// Função para fazer logout
 function handleLogout() {
   localStorage.removeItem("isLoggedIn");
   loginScreen.classList.remove("hidden");
@@ -76,7 +69,6 @@ function handleLogout() {
   selectedUsers = new Set();
 }
 
-// Função para buscar usuários da API
 async function fetchUsers() {
   try {
     const response = await fetch("https://randomuser.me/api/?results=12");
@@ -89,7 +81,6 @@ async function fetchUsers() {
   }
 }
 
-// Função para renderizar os usuários
 function renderUsers() {
   const nameFilterValue = nameFilter.value.toLowerCase();
   const countryFilterValue = countryFilter.value.toLowerCase();
@@ -121,7 +112,6 @@ function renderUsers() {
     )
     .join("");
 
-  // Adicionar event listeners para os cards
   document.querySelectorAll(".user-card").forEach((card) => {
     card.addEventListener("click", () => {
       const userId = card.dataset.id;
@@ -131,19 +121,16 @@ function renderUsers() {
         selectedUsers.add(userId);
       }
       card.classList.toggle("selected");
-      // Salvar seleções imediatamente após cada alteração
       localStorage.setItem("selectedUsers", JSON.stringify([...selectedUsers]));
     });
   });
 }
 
-// Event Listeners
 loginForm.addEventListener("submit", handleLogin);
 logoutBtn.addEventListener("click", handleLogout);
 nameFilter.addEventListener("input", renderUsers);
 countryFilter.addEventListener("input", renderUsers);
 
-// Inicialização
 document.addEventListener("DOMContentLoaded", () => {
   checkLoginStatus();
 });

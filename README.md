@@ -16,8 +16,8 @@ Este é um projeto que demonstra o consumo de uma API de usuários aleatórios c
 1. Clone o repositório
 2. Abra o arquivo `index.html` em seu navegador
 3. Use as seguintes credenciais para login:
-   - Usuário: `admin`
-   - Senha: `admin123`
+   - Usuário: `thiagogagliari`
+   - Senha: `thi123`
 
 ## Tecnologias utilizadas
 
@@ -40,4 +40,3 @@ Este é um projeto que demonstra o consumo de uma API de usuários aleatórios c
 - Seleção de cards com persistência
 - Efeitos visuais nos cards
 - Armazenamento local dos dados
-- Responsividade
